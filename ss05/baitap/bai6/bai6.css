@@ -1,0 +1,45 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    padding: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    }
+    .card-center{
+        text-align: center;
+        border: 3px solid green;
+        padding: 10px;
+    }
+    
+    
+    .card-example{
+        background-color: rgb(246, 238, 238);
+        font-weight: 2px;
+    }
+    .card-style{
+        background: #cbc5c5;
+        padding: 10px;
+        border-radius: 5px;
+        font-family: monospace;
+        border-left: 5px solid green;
+    }
+    align{
+        color: #ff0000;
+        padding: 2px 5px;
+        background-color: gainsboro;
+    }
+    p1{
+        color: #ff0000;
+    }
+    p2{
+        color: blue;
+    }
+    p3{
+        color: #9e4949;
+    }
+    button{
+        padding: 10px 15px;
+        background: green;
+        color: white;
+        border-radius: 5px;
+    }

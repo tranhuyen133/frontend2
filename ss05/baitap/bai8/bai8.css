@@ -1,0 +1,50 @@
+.related-posts {
+    max-width: 100%;
+    border-top: 2px solid #ccc;
+    padding-top: 10px;
+   }
+  
+  .related-posts h2 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .post-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+  
+  .post-item {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .post-item img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+  
+  .post-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .post-date {
+    font-size: 14px;
+    color: gray;
+  }
+.post-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #241571;
+    line-height: 1.4;
+}
+.post-title:hover {
+    text-decoration: underline;
+    color: #000;
+}

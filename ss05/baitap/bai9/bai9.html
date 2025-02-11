@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bai9</title>
+    <link rel="stylesheet" href="bai9.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Billing Address</h2>
+        <label>First Name</label>
+        <input type="text" placeholder="First name">
+        <label>Last Name</label>
+        <input type="text" placeholder="Last name">
+        <label>Username</label>
+        <input type="text" placeholder="@Username">
+        <label>Email (Optional)</label>
+        <input type="email" placeholder="you@example.com">
+        <label>Address</label>
+        <input type="text" placeholder="1234 Main St">
+        <label>Country</label>
+        <select>Choose...
+            <option value="">Viet Nam</option>
+            <option value="">American</option>
+        </select>
+        <label>State</label>
+        <select>
+            <option value="">North</option>
+            <option value="">South</option>
+        </select>
+        <label>Zip</label>
+        <input type="text">
+        <div class="checkbox">
+            <input type="checkbox"> Shipping address is the same as my billing address
+        </div>
+        <div class="checkbox">
+            <input type="checkbox"> Save this information for next time
+        </div>
+        
+        <h2>Payment</h2>
+        <input type="radio" name="payment" checked> Credit card
+        <input type="radio" name="payment"> Debit card
+        <input type="radio" name="payment"> PayPal
+        <label>Name on card</label>
+        <input type="text">
+        <label>Credit card number</label>
+        <input type="number">
+        <label>Expiration</label>
+        <input type="text">
+        <label>CVV</label>
+        <input type="text">
+        <br>
+        <br>
+        <button class="btn">Continue to checkout</button>
+    </div>
+</body>
+</html>
