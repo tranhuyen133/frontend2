@@ -1,0 +1,26 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+    padding: 5px;
+    }
+    .head{
+        color: aliceblue;
+        background-color: rgb(160, 160, 221);
+        text-align: center;
+        height: 150px;
+        padding: 25px;
+    }
+    .main{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .footer{
+        background-color: rgb(206, 204, 204);
+        text-align: center;
+    }
+    img{
+        border-radius: 100%;
+        width: 200px;
+        height: 150px;
+    }
