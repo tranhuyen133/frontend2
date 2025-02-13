@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* Internal */
+        .container{
+            
+            background-color: rgb(125, 182, 225);
+            border: 5px solid red;
+            padding: 10px 20px 30px 40px;
+            margin: 5px;
+            padding-bottom: 20px;
+        }
+        .content{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            /* padding-left: 50px; */
+            box-sizing: border-box;
+            padding: 10px;
+            
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        Box_model : mô hình hộp bên trong cái hộp:
+        1.margin : khỏng cách giữa các khối
+        2.border : độ dày đường viền của khối
+        3.padding : khoảng cách từ border cho đến content
+        4.content : nội dung của khối
+
+    độ rộng của khối : = border + padding + content
+    -->
+        <div class="container">
+            Học Box_model CSS
+        </div>
+        <div class="content"> 
+                Content
+        </div>
+</body>
+</html>

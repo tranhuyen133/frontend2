@@ -1,0 +1,19 @@
+.container
+{
+    width: 400px;
+    
+}
+.header{
+    border-left: 5px solid tomato;
+}
+.img p{
+    position: relative;
+    bottom: 70px;
+    font-size: 20px;
+    font-weight: 300;
+    color: rgb(63, 9, 223);
+}
+.text{
+    position: relative;
+    bottom: 60px;;
+}
