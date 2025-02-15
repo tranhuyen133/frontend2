@@ -5,7 +5,7 @@ body {
     padding: 0;
     background-color: #f8f9fa;
 }
-.container {
+.header {
     padding: 50px 20px;
 }
 h1 {
@@ -29,11 +29,11 @@ p {
     text-decoration: none;
     font-weight: bold;
 }
-.btn-primary {
+.btn-1 {
     background-color: #007bff;
     color: white;
 }
-.btn-secondary {
+.btn-2 {
     background-color: white;
     color: #333;
     border: 1px solid #ccc;
