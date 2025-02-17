@@ -1,0 +1,105 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f4f4f4;
+}
+
+.header {
+    background: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+.nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+.nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+.hero {
+    text-align: center;
+    background: #eaeaea;
+    padding: 50px;
+}
+
+.hero-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.hero-text {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.btn {
+    background: black;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.featured-work {
+    text-align: center;
+    padding: 50px;
+}
+
+.section-title {
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.projects {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.project {
+    background: white;
+    padding: 10px;
+    width: 150px;
+    text-align: center;
+}
+
+.project-image {
+    width: 150px;
+    height: 150px;
+    background: #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.about {
+    text-align: center;
+    padding: 50px;
+    background: #eaeaea;
+}
+
+.about-text {
+    color: #666;
+}
+
+.footer {
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
