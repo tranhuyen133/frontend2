@@ -1,0 +1,151 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f8f8f8;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background: white;
+    border-bottom: 2px solid #ddd;
+}
+
+.navbar ul {
+    display: flex;
+    list-style: none;
+}
+
+.navbar ul li {
+    margin-right: 15px;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: black;
+    font-size: 14px;
+}
+
+.epaper {
+    font-size: 14px;
+    color: rgb(38, 38, 62);
+    cursor: pointer;
+}
+
+.container {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+}
+
+.main-news {
+    width: 65%;
+    background: white;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.main-news img {
+    width: 100%;
+    border-radius: 5px;
+}
+
+.main-news h2 {
+    font-size: 20px;
+    margin: 10px 0;
+}
+
+.main-news p {
+    font-size: 14px;
+    color: gray;
+}
+
+.sidebar {
+    width: 35%;
+}
+
+.top-stories {
+    background: white;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+
+.top-stories h3 {
+    background: yellow;
+    padding: 5px;
+    font-size: 14px;
+}
+
+.top-stories ul {
+    list-style: none;
+    margin-top: 10px;
+}
+
+.top-stories ul li {
+    font-size: 14px;
+    padding: 5px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.quick-bites {
+    background: white;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.quick-bites h3 {
+    background: #f1f1f1;
+    padding: 5px;
+    font-size: 14px;
+}
+
+.quick-bites h4 {
+    font-size: 16px;
+    margin: 10px 0;
+}
+
+.quick-bites p {
+    font-size: 14px;
+    color: gray;
+    margin-bottom: 10px;
+}
+
+.quick-bites a {
+    color: rgb(39, 209, 132);
+    text-decoration: none;
+}
+
+.subscribe {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.quick-bites input {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.quick-bites button {
+    width: 100%;
+    padding: 8px;
+    background: rgb(168, 168, 245);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.quick-bites button:hover {
+    background: rgb(136, 136, 157);
+}
