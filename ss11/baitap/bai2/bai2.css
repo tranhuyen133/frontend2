@@ -1,0 +1,49 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 80%;
+    max-width: 1200px;
+    gap: 10px;
+    flex-direction: column;
+}
+
+.box {
+    height: 100px;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    flex-direction: r;
+    
+}
+
+.box1 { background-color: #87CEEB; } 
+.box2 { background-color: #E57373; } 
+.box3 { background-color: #FBC02D; } 
+.box4 { background-color: #64B5F6; } 
+.box5 { background-color: #283593; } 
+.box6 { background-color: #FF8A65; } 
+
+@media (max-width: 1024px) {
+    .container {
+        flex-direction: row;
+        width: 100%;
+    }
+    
+    .box {
+        width: 100%;
+    }
+}

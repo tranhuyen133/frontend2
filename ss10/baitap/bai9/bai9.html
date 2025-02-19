@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-around;
+            background-color: rgb(249, 241, 231);
+            height: 60px;
+            align-items: center;
+        }
+
+        .header .header_left {
+
+        }
+
+
+        .header .header_right {
+            
+        }
+         .header .header_right input {
+            padding: 5px;
+            outline: none;
+        }
+         .header .header_right .input_show {
+            width: 20px;
+        }
+         .header .header_right .input_shortby::placeholder{
+           padding-left: 20px;
+        }
+        .main{
+            height: 400px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 5px;
+            margin-top: 20px;
+        }
+        .main .item{
+            width: 23%; 
+           border: 1px solid rgb(36, 34, 34);
+           position: relative;
+           background-color: #F4F5F7;
+        }
+        .main .item .price{
+            width: 50px;
+            height: 40px;
+            background-color: tomato;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            position: absolute;
+            right: 10px;
+            top: 10px;
+        }
+        .main .item .image{
+            height: 150px;
+            background-color: red;
+        }
+        .main .item .image img{
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <!-- phần đầu -->
+        <div class="header_left">
+            <span>icon</span>
+            <span>filter</span>
+            <span>icon</span>
+            <span>icon</span> |
+            <span>Lorem, ipsum dolor.</span>
+
+        </div>
+        <div class="header_right">
+            <span>Show</span>
+            <input class="input_show" type="text" placeholder="16">
+            <span>Short by</span>
+            <input class="input_shortby" type="text" placeholder="Default">
+        </div>
+    </div>
+    <div class="main">
+        <!-- phần nội dung -->
+         <div class="item">
+            <div class="price">30%</div>
+            <div class="image">
+                <img src="data:image/jpeg;base64,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" alt="">
+            </div>
+            <p>Syltherine</p>
+            <p>Lorem, ipsum dolor.</p>
+            <span><strong>2.500.000</strong></span>
+           <del>3.500.000</del>
+
+        
+
+         </div>
+         <div class="item">
+            <div class="price">30%</div>
+            <div class="image">
+                <img src="https://tse4.mm.bing.net/th?id=OIP.TsgWFxobUpcvfm9-GrFYdwHaEK&pid=Api&P=0&h=220" alt="">
+            </div>
+            <p>Syltherine</p>
+            <p>Lorem, ipsum dolor.</p>
+            <span><strong>2.500.000</strong></span>
+           <del>3.500.000</del>
+         </div>
+         <div class="item">
+            <div class="price">30%</div>
+            <div class="image">
+                <img src="https://tse1.mm.bing.net/th?id=OIP.XhQvKn44I8-zAA-U_lDXOgHaFH&pid=Api&P=0&h=220" alt="">
+            </div>
+            <p>Syltherine</p>
+            <p>Lorem, ipsum dolor.</p>
+            <span><strong>2.500.000</strong></span>
+           <del>3.500.000</del>
+         </div>
+         <div class="item">
+            <div class="price">30%</div>
+            <div class="image">
+                <img src="https://tse4.mm.bing.net/th?id=OIP.wFXk2A2oEVc95FKXIzrL8wHaE8&pid=Api&P=0&h=220" alt="">
+            </div>
+            <p>Syltherine</p>
+            <p>Lorem, ipsum dolor.</p>
+            <span><strong>2.500.000</strong></span>
+           <del>3.500.000</del>
+         </div>
+         <div class="item">
+            <div class="price">30%</div>
+            <div class="image">
+                <img src="https://tse2.mm.bing.net/th?id=OIP.ElTT9JnGhd-Wh-G0FwZuMQHaE8&pid=Api&P=0&h=220" alt="">
+            </div>
+            <p>Syltherine</p>
+            <p>Lorem, ipsum dolor.</p>
+            <span><strong>2.500.000</strong></span>
+           <del>3.500.000</del>
+         </div>
+         <div class="item">
+            <div class="price">30%</div>
+            <div class="image">
+                <img src="https://tse3.mm.bing.net/th?id=OIP.6TTL59e1jJqBpa3H1eoojAHaE8&pid=Api&P=0&h=220" alt="">
+            </div>
+            <p>Syltherine</p>
+            <p>Lorem, ipsum dolor.</p>
+            <span><strong>2.500.000</strong></span>
+           <del>3.500.000</del>
+         </div>
+         <div class="item">
+            <div class="price">30%</div>
+            <div class="image">
+                <img src="https://tse1.mm.bing.net/th?id=OIP.tHzk5k35Z6bFPcr6vdmbEgHaEc&pid=Api&P=0&h=220" alt="">
+            </div>
+            <p>Syltherine</p>
+            <p>Lorem, ipsum dolor.</p>
+            <span><strong>2.500.000</strong></span>
+           <del>3.500.000</del>
+         </div>
+         <div class="item">
+            <div class="price">30%</div>
+            <div class="image">
+                <img src="https://tse4.mm.bing.net/th?id=OIP.JBxj6ZkAVV21gVRxVxX_-wHaEh&pid=Api&P=0&h=220" alt="">
+            </div>
+            <p>Syltherine</p>
+            <p>Lorem, ipsum dolor.</p>
+            <span><strong>2.500.000</strong></span>
+           <del>3.500.000</del>
+         </div>
+    </div>
+</body>
+
+</html>
