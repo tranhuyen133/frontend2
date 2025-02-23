@@ -1,0 +1,150 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.header-top{
+    width: 100%;
+    height: 30px;
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    line-height: 30px;
+
+}
+.header-top a{
+    color: white;
+}
+.header-top-laguage{
+    padding-left: 90px;
+}
+.header-bottom{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+.header-bottom h2{
+    margin-left: 150px;
+}
+
+.header-bottom-home ul  {
+    display: flex;
+    gap: 60px;
+    
+}
+.header-bottom-home li  {
+    display: flex;
+}
+.header-bottom-home a{
+    text-decoration: none;
+    color: black;
+}
+.header-bottom-search input{
+    width: 200px;
+    height: 30px;
+}
+.header-bottom-search img{
+    position: absolute;
+    left: 1235px;
+}
+.header-bottom-icon{
+}
+.navbar{
+    display: flex;
+    margin-left: 150px;
+    margin-top: 20px;
+}
+.navbar-list{
+    display: flex;
+    flex-direction: column;
+    line-height: 35px;
+
+}
+.navbar-img {
+    margin-left: 100px ;
+}
+.navbar-img img{
+    width: 900px;
+    height: 300px;
+}
+
+.main-today{
+    margin-top: 20px;
+}
+.main-today-tag{
+    margin-top: 20px;
+    display: flex;
+}
+.main-today-icon{
+    width: 10px;
+    height: 30px;
+    background-color: orangered;
+    border-radius: 3px;
+    margin-right: 5px;
+    margin-left: 20px;
+}
+.main-flashsale{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 30px;
+    margin-top: 10px;
+}
+.main-flashsale-countdown{
+    display: flex; /* Sắp xếp theo hàng ngang */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    gap: 10px; /* Khoảng cách giữa các phần tử */
+}
+.main-flashsale-countdown-time{
+    display: flex;
+    flex-direction: column; /* Xếp chữ Days, Hours, Minutes, Seconds lên trên */
+    align-items: center; /* Căn giữa theo chiều ngang */
+}
+
+.label {
+    font-size: 12px;
+    color: #666;
+}
+    
+.value {
+    font-size: 24px;
+    font-weight: bold;
+}
+.colon{
+    font-size: 24px;
+    font-weight: bold;
+    color: #e57373;
+
+}
+.main-today-img{
+    margin-right: 30px;
+}
+.main-today-products{
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+}
+.main-categories-tittle{
+    display: flex;
+    justify-content: space-between;
+}
+.main-categories-products{
+    display: flex;
+    justify-content: space-between;
+}
+.main-categories-products-product{
+    display: flex;
+    width: 140px;
+    height:145px;
+    border: 2px solid black;
+}
+.main-categories-products-product {
+}
+
+
+
+
+
+

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="./cart.css">
+    
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">Exclusive</div>
+            <ul>
+                <li><a href="">Home</a></li>
+                <li><a href="">Contact</a></li>
+                <li><a href="">About</a></li>
+                <li><a href="">Sign Up</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <div class="cart-container">
+            <h2>Cart</h2>
+            <table class="cart-table">
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Subtotal</th>
+                </tr>
+                <tr>
+                    <td><img src="./img/g27cq4-500x500 1.png" alt="LCD Monitor"> LCD Monitor</td>
+                    <td>$650</td>
+                    <td><input type="number" value="1"></td>
+                    <td>$650</td>
+                </tr>
+                <tr>
+                    <td><img src="./img/g92-2-500x500 1.png" alt="Gamepad"> H1 Gamepad</td>
+                    <td>$550</td>
+                    <td><input type="number" value="2"></td>
+                    <td>$1100</td>
+                </tr>
+            </table>
+            <button class="btn btn-primary">Update Cart</button>
+            <button class="btn">Return To Shop</button>
+        </div>
+        
+        <div class="cart-summary">
+            <h3>Cart Total</h3>
+            <p>Subtotal: <strong>$1750</strong></p>
+            <p>Shipping: <strong>Free</strong></p>
+            <p>Total: <strong>$1750</strong></p>
+            <button class="btn btn-primary">Proceed to Checkout</button>
+        </div>
+    </main>
+    
+    <div class="footer">
+        <p >&copy; Copyright Exclusive 2024. All rights reserved.</p>
+    </div>
+</body>
+</html>
