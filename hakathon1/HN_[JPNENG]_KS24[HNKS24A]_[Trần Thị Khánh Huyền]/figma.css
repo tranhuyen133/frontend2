@@ -1,0 +1,273 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: #4B5563;
+}
+.header{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+.header-tittle{
+    margin-left: 30px;
+}
+.header-list{
+    margin-left: 550px;
+    margin-top: 10px;
+}
+.header-list ul {
+    display: flex;
+    gap: 30px;
+    margin-left: 200px;
+
+}
+.header-list li{
+    display: flex;
+}
+
+.header-list a{
+    text-decoration: none;
+    color: black;
+}
+.header-icon{
+    display: flex;
+    margin-right: 30px;
+    align-items: center;
+    text-align: center;
+    margin-bottom:15px ;
+
+}
+.header-icon img{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    padding-right: 20px;
+}
+.header-icon-box{
+    width: 120px;
+    height: 30px;
+    border-radius: 50px;
+    background-color: black;
+    color: aliceblue;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    padding-left: 10px;
+
+}
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    margin: 50px;
+    line-height: 40px;
+    margin-top: 90px;
+}
+.navbar-introduction-text{
+    display: flex;
+    align-items: flex-start;
+}
+.navbar-introduction-location{
+    display: flex;
+    flex-direction: column;
+    margin-top: 60px;
+    
+}
+
+.navbar-introduction-icon{
+    margin-top: 60px;
+}
+.navbar-img{
+    margin-right: 70px;
+}
+.main-skills{
+    margin-left: 30px;
+    margin-top: 200px;
+}
+.main-works-tittle1{
+    padding-left: 690px;
+    display: flex;
+    align-items: center;
+}
+.main-skills-tittle1{
+    padding-left: 690px;
+}
+
+.main-skills-tittle{
+    width: 70px;
+    height: 28px;
+    border-radius: 12px;
+    background-color: #E5E7EB;
+    display: flex;
+    align-items: center;
+    padding-left: 14px;
+}
+
+
+.main-skills-text{
+    margin-top: 20px;
+    text-align: center;
+}
+.main-skills-list{
+    display: flex;
+    justify-content: space-between;
+    line-height: 10px;
+    margin-top: 20px;
+}
+.main-works{
+    margin-top: 200px;
+
+}
+.main-works-tittle1{
+    padding-left: 710px;
+}
+.main-works-tittle{
+    width: 70px;
+    height: 28px;
+    border-radius: 12px;
+    background-color: #E5E7EB;
+    display: flex;
+    align-items: center;
+    padding-left: 11px;
+}
+.main-works-text{
+    margin-top:20px ;
+    text-align: center;
+}
+.main-works-content{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    
+}
+.main-works-content{
+    margin-left: 40px;
+    margin-top: 80px;
+}
+.main-works-content-text{
+    margin-left: 100px;
+    margin-right: 40px;
+    margin-top: 60px;
+
+}
+.main-works-content-lists {
+    width: 79px;
+    height: 28px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    padding-left: 12px;
+
+}
+.main-works-content-lists span{
+    margin-top: 40px;
+    background: #ddd;
+    padding: 5px 10px;
+    margin-right: 5px;
+    border-radius: 12px;
+    font-size: 14px;
+    gap: 10px;
+}
+.main-works-content-img{
+
+    margin-top: 20px;
+}
+/* Footer */
+.footer{
+    width: 100%;
+    height: 68px;
+    background-color: #f9fafb;
+    display: flex;
+    align-items: center;
+   padding-left: 600px;
+}
+
+/* Thiết lập chung cho iPhone 8 (375x667) */
+@media screen and (max-width: 480px) {
+    .header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .header-tittle h2 {
+        font-size: 20px;
+    }
+
+    .header-list {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+
+    .header-list ul {
+        flex-direction: column;
+        gap: 5px;
+        align-items: center;
+        padding: 0;
+    }
+
+    .header-list li {
+        display: block;
+    }
+
+    .header-icon {
+        flex-direction: column;
+        gap: 5px;
+        margin-top: 10px;
+    }
+
+    .header-icon-box {
+        width: 100px;
+        height: 30px;
+        font-size: 14px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin: 10px;
+    }
+
+    .navbar-introduction-text {
+        padding: 0 10px;
+    }
+
+    .navbar-img img {
+        width: 100%;
+        max-width: 280px;
+    }
+
+    .main-skills {
+        margin-left: 0;
+        text-align: center;
+    }
+
+    .main-skills-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .main-works-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .main-works-content-img1 img {
+        width: 100%;
+        max-width: 280px;
+    }
+
+    .footer {
+        padding-left: 0;
+        text-align: center;
+        justify-content: center;
+    }
+}
