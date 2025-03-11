@@ -23,6 +23,9 @@ function countWords() {
     console.log("Số lượng từ trong chuỗi là:", wordCount);
 }
 
+
+
+
 function replaceCharacter() {
     let oldChar = prompt("Nhập ký tự cần thay thế: ");
     if (!str.includes(oldChar)) {
