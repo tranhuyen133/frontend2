@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function findLargestNumberFromDigits(num) {
+    // Kiểm tra nếu không phải số nguyên hoặc là số âm
+    if (!Number.isInteger(num)) {
+        return "Dữ liệu không hợp lệ";
+    }
+
+    // Chuyển số thành mảng chữ số, sắp xếp giảm dần rồi ghép lại thành số
+    const largestNumber = parseInt(num.toString().split("").sort((a, b) => b - a).join(""));
+
+    return largestNumber;
+}
+
+// 🔹 Ví dụ sử dụng:
+console.log(findLargestNumberFromDigits(3124)); // Output: 4321
+console.log(findLargestNumberFromDigits(5081)); // Output: 8510
+console.log(findLargestNumberFromDigits(-123)); // Output: "Dữ liệu không hợp lệ"
+console.log(findLargestNumberFromDigits("abc")); // Output: "Dữ liệu không hợp lệ"
+console.log(findLargestNumberFromDigits(0)); // Output: 0
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function findMissingNumber(arr) {
+    if (!Array.isArray(arr) || arr.length < 2) {
+        return "Mảng cần ít nhất 2 phần tử.";
+    }
+
+    // Kiểm tra mảng có chứa toàn số nguyên không
+    if (!arr.every(Number.isInteger)) {
+        return "Dữ liệu không hợp lệ";
+    }
+
+    // Sắp xếp mảng theo thứ tự tăng dần
+    arr.sort((a, b) => a - b);
+
+    // Tìm số bị thiếu
+    for (let i = 0; i < arr.length - 1; i++) {
+        if (arr[i + 1] - arr[i] !== 1) {
+            return arr[i] + 1;
+        }
+    }
+    
+    return "Không tìm thấy số bị thiếu.";
+}
+
+// 🔹 Ví dụ sử dụng:
+console.log(findMissingNumber([1, 2, 3, 5])); // Output: 4
+console.log(findMissingNumber([10, 12, 11, 14])); // Output: 13
+console.log(findMissingNumber([7, 8, 9, 10])); // Output: "Không tìm thấy số bị thiếu."
+console.log(findMissingNumber([5])); // Output: "Mảng cần ít nhất 2 phần tử."
+console.log(findMissingNumber(["a", 2, 3])); // Output: "Dữ liệu không hợp lệ"
+
+  </script>
+</body>
+</html>

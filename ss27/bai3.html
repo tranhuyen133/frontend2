@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+   function tinhDienTichHinhTron() {
+    let r = parseFloat(prompt("Nhập bán kính hình tròn: "));
+    if (isNaN(r) || r <= 0) {
+        console.log(" Bán kính không hợp lệ!");
+        return;
+    }
+    let area = Math.PI * r * r;
+    console.log(` Diện tích hình tròn: ${area.toFixed(2)}`);
+}
+
+function tinhChuViHinhTron() {
+    let r = parseFloat(prompt("Nhập bán kính hình tròn: "));
+    if (isNaN(r) || r <= 0) {
+        console.log(" Bán kính không hợp lệ!");
+        return;
+    }
+    let circumference = 2 * Math.PI * r;
+    console.log(`Chu vi hình tròn: ${circumference.toFixed(2)}`);
+}
+
+function tinhDienTichHinhChuNhat() {
+    let chieuDai = parseFloat(prompt("Nhập chiều dài hình chữ nhật: "));
+    let chieuRong = parseFloat(prompt("Nhập chiều rộng hình chữ nhật: "));
+
+    if (isNaN(chieuDai) || isNaN(chieuRong) || chieuDai <= 0 || chieuRong <= 0) {
+        console.log(" Kích thước không hợp lệ!");
+        return;
+    }
+
+    let area = chieuDai * chieuRong;
+    console.log(` Diện tích hình chữ nhật: ${area.toFixed(2)}`);
+}
+
+function tinhChuViHinhChuNhat() {
+    let chieuDai = parseFloat(prompt("Nhập chiều dài hình chữ nhật: "));
+    let chieuRong = parseFloat(prompt("Nhập chiều rộng hình chữ nhật: "));
+
+    if (isNaN(chieuDai) || isNaN(chieuRong) || chieuDai <= 0 || chieuRong <= 0) {
+        console.log(" Kích thước không hợp lệ!");
+        return;
+    }
+
+    let perimeter = 2 * (chieuDai + chieuRong);
+    console.log(`Chu vi hình chữ nhật: ${perimeter.toFixed(2)}`);
+}
+
+function menuHinhHoc() {
+    while (true) {
+        console.log("\n===== MENU TÍNH TOÁN HÌNH HỌC =====");
+        console.log("1. Tính diện tích hình tròn");
+        console.log("2. Tính chu vi hình tròn");
+        console.log("3. Tính diện tích hình chữ nhật");
+        console.log("4. Tính chu vi hình chữ nhật");
+        console.log("5. Thoát");
+
+        let choice = parseInt(prompt("Nhập lựa chọn: "));
+
+        switch (choice) {
+            case 1:
+                tinhDienTichHinhTron();
+                break;
+            case 2:
+                tinhChuViHinhTron();
+                break;
+            case 3:
+                tinhDienTichHinhChuNhat();
+                break;
+            case 4:
+                tinhChuViHinhChuNhat();
+                break;
+            case 5:
+                console.log("Thoát chương trình.");
+                return;
+            default:
+                console.log("Lựa chọn không hợp lệ! Vui lòng nhập lại.");
+        }
+    }
+}
+
+
+menuHinhHoc();
+       
+    </script>
+</body>
+</html>

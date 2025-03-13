@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+ function nhapDanhSachSoNguyen() {
+    let input = prompt("Nhập danh sách số nguyên");
+    let numbers = input.split().map(num => parseInt(num.trim()));
+
+    if (numbers.some(isNaN)) {
+        console.log("Dữ liệu không hợp lệ! Vui lòng nhập lại.");
+        return [];
+    }
+
+    console.log(" Danh sách số nguyên:", numbers);
+    return numbers;
+}
+
+function tinhTrungBinhCong(numbers) {
+    if (numbers.length === 0) {
+        console.log(" Danh sách rỗng!");
+        return;
+    }
+    
+    let sum = numbers.reduce((acc, num) => acc + num, 0);
+    let average = sum / numbers.length;
+    console.log(`Trung bình cộng: ${average.toFixed(2)}`);
+}
+
+function timSoChanLonNhat(numbers) {
+    let soChan = numbers.filter(num => num % 2 === 0);
+    if (soChan.length === 0) {
+        console.log("Không có số chẵn trong danh sách.");
+        return;
+    }
+
+    let maxEven = Math.max(...soChan);
+    console.log(`Số chẵn lớn nhất: ${maxEven}`);
+}
+
+function timSoLeNhoNhat(numbers) {
+    let soLe = numbers.filter(num => num % 2 !== 0);
+    if (soLe.length === 0) {
+        console.log(" Không có số lẻ trong danh sách.");
+        return;
+    }
+
+    let minOdd = Math.min(...soLe);
+    console.log(` Số lẻ nhỏ nhất: ${minOdd}`);
+}
+
+function menuXuLySoNguyen() {
+    let numbers = [];
+
+    while (true) {
+        console.log("\n===== MENU XỬ LÝ SỐ NGUYÊN =====");
+        console.log("1. Nhập danh sách số nguyên");
+        console.log("2. Tính trung bình cộng");
+        console.log("3. Tìm số chẵn lớn nhất");
+        console.log("4. Tìm số lẻ nhỏ nhất");
+        console.log("5. Thoát");
+
+        let choice = parseInt(prompt("Nhập lựa chọn: "));
+
+        switch (choice) {
+            case 1:
+                numbers = nhapDanhSachSoNguyen();
+                break;
+            case 2:
+                tinhTrungBinhCong(numbers);
+                break;
+            case 3:
+                timSoChanLonNhat(numbers);
+                break;
+            case 4:
+                timSoLeNhoNhat(numbers);
+                break;
+            case 5:
+                console.log("Thoát chương trình.");
+                return;
+            default:
+                console.log("Lựa chọn không hợp lệ! Vui lòng nhập lại.");
+        }
+    }
+}
+
+// Chạy chương trình
+menuXuLySoNguyen();
+
+    </script>
+</body>
+</html>

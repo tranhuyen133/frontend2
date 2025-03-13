@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function sortEvenNumbersInArray(arr) {
+    if (!Array.isArray(arr) || arr.some(isNaN)) {
+        return "Dữ liệu không hợp lệ";
+    }
+
+    // Tách các số chẵn, sắp xếp chúng tăng dần
+    const sortedEvens = arr.filter(num => num % 2 === 0).sort((a, b) => a - b);
+    
+    // Chèn lại số chẵn vào vị trí ban đầu, giữ nguyên số lẻ
+    let evenIndex = 0;
+    return arr.map(num => (num % 2 === 0 ? sortedEvens[evenIndex++] : num));
+}
+
+// 🔹 Ví dụ sử dụng:
+console.log(sortEvenNumbersInArray([5, 8, 6, 3, 2, 7, 4])); // Output: [5, 2, 4, 3, 6, 7, 8]
+console.log(sortEvenNumbersInArray([9, 1, 4, 6, 2]));       // Output: [9, 1, 2, 4, 6]
+console.log(sortEvenNumbersInArray(["abc", 2, 4, 6]));      // Output: "Dữ liệu không hợp lệ"
+console.log(sortEvenNumbersInArray([]));                   // Output: []
+
+  </script>
+</body>
+</html>

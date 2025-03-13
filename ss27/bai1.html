@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script >
+
+        function add(a, b) {
+            return a + b;
+        }
+
+        function subtract(a, b) {
+            return a - b;
+        }
+
+        function multiply(a, b) {
+            return a * b;
+        }
+
+        function divide(a, b) {
+            if (b === 0) return "Không thể chia cho 0";
+            return a / b;
+        }
+
+        function calculator() {
+            while (true) {
+                console.log("\n===== MENU =====");
+                console.log("1. Cộng hai số");
+                console.log("2. Trừ hai số");
+                console.log("3. Nhân hai số");
+                console.log("4. Chia hai số");
+                console.log("5. Thoát");
+
+                let choice = Number(prompt("Nhập lựa chọn: "));
+                if (choice === 5) {
+                    console.log("Chương trình kết thúc.");
+                    break;
+                }
+
+                let a = Number(prompt("Nhập số thứ nhất: "));
+                let b = Number(prompt("Nhập số thứ hai: "));
+
+                if (isNaN(a) || isNaN(b)) {
+                    console.log("Dữ liệu không hợp lệ! Vui lòng nhập số.");
+                    continue;
+                }
+
+                switch (choice) {
+                    case 1:
+                        console.log(`Kết quả: ${add(a, b)}`);
+                        break;
+                    case 2:
+                        console.log(`Kết quả: ${subtract(a, b)}`);
+                        break;
+                    case 3:
+                        console.log(`Kết quả: ${multiply(a, b)}`);
+                        break;
+                    case 4:
+                        console.log(`Kết quả: ${divide(a, b)}`);
+                        break;
+                    default:
+                        console.log(" Lựa chọn không hợp lệ!");
+                }
+            }
+        }
+
+        calculator();
+
+    </script>
+</body>
+</html>

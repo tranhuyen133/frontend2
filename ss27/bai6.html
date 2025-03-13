@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function isArithmeticProgression(arr) {
+    if (!Array.isArray(arr) || arr.length < 2) {
+        return "Mảng cần ít nhất 2 phần tử.";
+    }
+
+    // Kiểm tra mảng có chứa toàn số nguyên không
+    if (!arr.every(Number.isInteger)) {
+        return "Dữ liệu không hợp lệ";
+    }
+
+    const diff = arr[1] - arr[0];
+
+    for (let i = 2; i < arr.length; i++) {
+        if (arr[i] - arr[i - 1] !== diff) {
+            return false;
+        }
+    }
+    return true;
+}
+
+// Ví dụ sử dụng:
+console.log(isArithmeticProgression([2, 4, 6, 8, 10])); // Output: true
+console.log(isArithmeticProgression([3, 6, 9, 12])); // Output: true
+console.log(isArithmeticProgression([1, 2, 4, 8])); // Output: false
+console.log(isArithmeticProgression([5])); // Output: "Mảng cần ít nhất 2 phần tử."
+console.log(isArithmeticProgression(["a", 2, 3])); // Output: "Dữ liệu không hợp lệ"
+
+  </script>
+</body>
+</html>

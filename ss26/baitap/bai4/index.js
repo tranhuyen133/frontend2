@@ -18,7 +18,7 @@ function filterPrimeNumbers(arr) {
 }
 
 // Test cases
-filterPrimeNumbers([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]); // Output: [2, 3, 5, 7]
-filterPrimeNumbers([]); // Output: "Mảng không có phần tử nào"
-filterPrimeNumbers("abc"); // Output: "Dữ liệu không hợp lệ"
-filterPrimeNumbers([15, 18, 20]); // Output: "Mảng không có phần tử nào"
+filterPrimeNumbers([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]); 
+filterPrimeNumbers([]); 
+filterPrimeNumbers("abc"); 
+filterPrimeNumbers([15, 18, 20]); 
