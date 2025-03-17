@@ -1,0 +1,125 @@
+class Dish {
+    constructor(name, price, description) {
+        this.name = name;
+        this.price = price;
+        this.description = description;
+    }
+}
+
+class RestaurantMenu {
+    constructor() {
+        this.menu = {};
+    }
+
+    addDish(category, name, price, description) {
+        if (!this.menu[category]) this.menu[category] = [];
+        this.menu[category].push(new Dish(name, price, description));
+        console.log(`Đã thêm món "${name}" vào danh mục "${category}"`);
+    }
+
+    removeDish(name) {
+        for (const category in this.menu) {
+            const index = this.menu[category].findIndex(dish => dish.name === name);
+            if (index !== -1) {
+                this.menu[category].splice(index, 1);
+                console.log(`Đã xóa món "${name}" khỏi danh mục "${category}"`);
+                return;
+            }
+        }
+        console.log("Không tìm thấy món ăn!");
+    }
+
+    updateDish(name, newName, newPrice, newDescription) {
+        for (const category in this.menu) {
+            const dish = this.menu[category].find(dish => dish.name === name);
+            if (dish) {
+                dish.name = newName;
+                dish.price = newPrice;
+                dish.description = newDescription;
+                console.log(`Cập nhật món ăn thành công!`);
+                return;
+            }
+        }
+        console.log("Không tìm thấy món ăn để cập nhật!");
+    }
+
+    displayMenu() {
+        console.log("\n*** MENU NHÀ HÀNG ***");
+        if (Object.keys(this.menu).length === 0) {
+            console.log("Hiện tại không có món ăn nào trong menu.");
+            return;
+        }
+        for (const category in this.menu) {
+            console.log(`\nDanh mục: ${category}`);
+            this.menu[category].forEach(dish => {
+                console.log(`- ${dish.name} | ${dish.price} VND | ${dish.description}`);
+            });
+        }
+    }
+
+    searchDish(name) {
+        console.log("\nKết quả tìm kiếm:");
+        for (const category in this.menu) {
+            const dish = this.menu[category].find(dish => dish.name.toLowerCase() === name.toLowerCase());
+            if (dish) {
+                console.log(`Tìm thấy "${dish.name}" trong danh mục "${category}"`);
+                console.log(`- Giá: ${dish.price} VND`);
+                console.log(`- Mô tả: ${dish.description}`);
+                return;
+            }
+        }
+        console.log("Không tìm thấy món ăn nào!");
+    }
+}
+
+const restaurantMenu = new RestaurantMenu();
+const prompt = require("prompt-sync")();
+
+function main() {
+    while (true) {
+        console.log("\n--- QUẢN LÝ MENU NHÀ HÀNG ---");
+        console.log("1. Thêm món ăn");
+        console.log("2. Xóa món ăn");
+        console.log("3. Cập nhật món ăn");
+        console.log("4. Hiển thị menu");
+        console.log("5. Tìm kiếm món ăn");
+        console.log("6. Thoát");
+
+        let choice = prompt("Chọn chức năng (1-6): ");
+
+        switch (choice) {
+            case "1":
+                let category = prompt("Nhập danh mục: ");
+                let name = prompt("Nhập tên món ăn: ");
+                let price = parseFloat(prompt("Nhập giá: "));
+                let description = prompt("Nhập mô tả: ");
+                restaurantMenu.addDish(category, name, price, description);
+                break;
+            case "2":
+                let deleteName = prompt("Nhập tên món ăn cần xóa: ");
+                restaurantMenu.removeDish(deleteName);
+                break;
+            case "3":
+                let oldName = prompt("Nhập tên món ăn cần cập nhật: ");
+                let newName = prompt("Nhập tên mới: ");
+                let newPrice = parseFloat(prompt("Nhập giá mới: "));
+                let newDescription = prompt("Nhập mô tả mới: ");
+                restaurantMenu.updateDish(oldName, newName, newPrice, newDescription);
+                break;
+            case "4":
+                restaurantMenu.displayMenu();
+                break;
+            case "5":
+                let searchName = prompt("Nhập tên món ăn cần tìm: ");
+                restaurantMenu.searchDish(searchName);
+                break;
+            case "6":
+                console.log("Thoát chương trình.");
+                return;
+            default:
+                console.log("Lựa chọn không hợp lệ, vui lòng nhập lại!");
+        }
+    }
+}
+
+main();
