@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let courses = [
+    { id: 1, name: "JavaScript Basics", instructor: "John Doe", students: [] },
+    { id: 2, name: "Python for Beginners", instructor: "Jane Smith", students: [] },
+    { id: 3, name: "Web Development", instructor: "Alice Johnson", students: [] }
+];
+
+let users = [];
+
+// Hiển thị danh sách khóa học
+function displayCourses() {
+    alert(courses.map(c => `${c.id}. ${c.name} - Instructor: ${c.instructor}`).join("\n"));
+}
+
+// Thêm khóa học mới
+function addCourse() {
+    let id = courses.length + 1;
+    let name = prompt("Nhập tên khóa học:");
+    let instructor = prompt("Nhập tên giảng viên:");
+    courses.push({ id, name, instructor, students: [] });
+    alert("Khóa học đã được thêm thành công!");
+}
+
+// Tìm kiếm khóa học theo tên
+function searchCourse() {
+    let keyword = prompt("Nhập tên khóa học cần tìm:").toLowerCase();
+    let result = courses.filter(c => c.name.toLowerCase().includes(keyword));
+    alert(result.length > 0 ? result.map(c => `${c.id}. ${c.name} - Instructor: ${c.instructor}`).join("\n") : "Không tìm thấy khóa học!");
+}
+
+// Xóa khóa học
+function deleteCourse() {
+    let id = parseInt(prompt("Nhập ID khóa học cần xóa:"));
+    courses = courses.filter(c => c.id !== id);
+    users.forEach(user => user.registeredCourses = user.registeredCourses.filter(courseId => courseId !== id));
+    alert("Khóa học đã được xóa!");
+}
+
+// Thêm người dùng mới
+function addUser() {
+    let id = users.length + 1;
+    let name = prompt("Nhập tên người dùng:");
+    users.push({ id, name, registeredCourses: [] });
+    alert("Người dùng đã được thêm!");
+}
+
+// Đăng ký khóa học
+function registerCourse() {
+    let userId = parseInt(prompt("Nhập ID người dùng:"));
+    let courseId = parseInt(prompt("Nhập ID khóa học:"));
+    let user = users.find(u => u.id === userId);
+    let course = courses.find(c => c.id === courseId);
+    if (!user || !course) {
+        alert("Người dùng hoặc khóa học không tồn tại!");
+        return;
+    }
+    user.registeredCourses.push(courseId);
+    course.students.push(userId);
+    alert(`${user.name} đã đăng ký khóa học ${course.name}`);
+}
+
+// Hủy đăng ký khóa học
+function unregisterCourse() {
+    let userId = parseInt(prompt("Nhập ID người dùng:"));
+    let courseId = parseInt(prompt("Nhập ID khóa học muốn hủy đăng ký:"));
+    let user = users.find(u => u.id === userId);
+    let course = courses.find(c => c.id === courseId);
+    if (!user || !course) {
+        alert("Người dùng hoặc khóa học không tồn tại!");
+        return;
+    }
+    user.registeredCourses = user.registeredCourses.filter(id => id !== courseId);
+    course.students = course.students.filter(id => id !== userId);
+    alert(`${user.name} đã hủy đăng ký khóa học ${course.name}`);
+}
+
+// Hiển thị danh sách khóa học của một người dùng
+function displayUserCourses() {
+    let userId = parseInt(prompt("Nhập ID người dùng:"));
+    let user = users.find(u => u.id === userId);
+    if (!user) {
+        alert("Người dùng không tồn tại!");
+        return;
+    }
+    let registered = courses.filter(c => user.registeredCourses.includes(c.id));
+    alert(registered.length > 0 ? registered.map(c => `${c.id}. ${c.name}`).join("\n") : "Người dùng chưa đăng ký khóa học nào!");
+}
+
+// Chạy chương trình
+function main() {
+    let choice;
+    do {
+        choice = prompt("Chọn chức năng:\n1. Hiển thị khóa học\n2. Thêm khóa học\n3. Tìm kiếm khóa học\n4. Xóa khóa học\n5. Thêm người dùng\n6. Đăng ký khóa học\n7. Hủy đăng ký khóa học\n8. Hiển thị danh sách khóa học của người dùng\n9. Thoát");
+        switch (choice) {
+            case "1":
+                displayCourses();
+                break;
+            case "2":
+                addCourse();
+                break;
+            case "3":
+                searchCourse();
+                break;
+            case "4":
+                deleteCourse();
+                break;
+            case "5":
+                addUser();
+                break;
+            case "6":
+                registerCourse();
+                break;
+            case "7":
+                unregisterCourse();
+                break;
+            case "8":
+                displayUserCourses();
+                break;
+            case "9":
+                alert("Thoát chương trình.");
+                break;
+            default:
+                alert("Lựa chọn không hợp lệ!");
+        }
+    } while (choice !== "9");
+}
+
+main();
+    </script>
+</body>
+</html>

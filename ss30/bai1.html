@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bai1</title>
+</head>
+<body>
+    <script>
+       let products = [
+    {
+        id: 1,
+        name: "mèn mén ",
+        price: 20000,
+        quanity: 20,
+        category: "món ăn dân tộc Mông",
+    },
+    {
+        id: 2,
+        name: "mứt",
+        price: 80000,
+        
+        quanity: 21,
+        category: "món ăn dân tộc Kinh",
+    },
+
+    {
+        id: 3,
+        name: " cơm lam ",
+        price: 40000,
+        quanity: 15,
+        category: "món ăn dân tộc Mông",
+    },
+
+    {
+        id: 4,
+        name: "bánh đậu xanh ",
+        price: 60000,
+        quanity: 30,
+        category: "món ăn dân tộc Kinh",
+    },
+];
+
+let cart = [];
+
+// Hiển thị sản phẩm theo danh mục
+function displayProductsByCategory() {
+    let category = prompt("Nhập danh mục cần xem (món ăn dân tộc Kinh/Mông):");
+    let filtered = products.filter(p => p.category.toLowerCase() === category.toLowerCase());
+    if (filtered.length === 0) {
+        console.log("Không tìm thấy sản phẩm thuộc danh mục này!");
+    } else {
+        console.log(filtered.map(p => `${p.id}. ${p.name} - ${p.price} VND - Còn: ${p.quantity}`).join("\n"));
+    }
+}
+
+// Mua sản phẩm
+function buyProduct() {
+    let id = parseInt(prompt("Nhập ID sản phẩm muốn mua:"));
+    let quantity = parseInt(prompt("Nhập số lượng muốn mua:"));
+    let product = products.find(p => p.id === id);
+    if (!product) {
+        console.log("Sản phẩm không tồn tại!");
+        return;
+    }
+    if (product.quantity < quantity) {
+        console.log("Số lượng không đủ!");
+        return;
+    }
+    product.quantity -= quantity;
+    let cartItem = cart.find(item => item.id === id);
+    if (cartItem) {
+        cartItem.quantity += quantity;
+    } else {
+        cart.push({ ...product, quantity });
+    }
+    console.log(`Đã thêm ${quantity} ${product.name} vào giỏ hàng.`);
+}
+
+// Sắp xếp sản phẩm theo giá
+function sortProducts() {
+    let order = prompt("Nhập 'asc' để sắp xếp tăng dần, 'desc' để sắp xếp giảm dần:");
+    products.sort((a, b) => order === 'asc' ? a.price - b.price : b.price - a.price);
+   console.log("Danh sách sản phẩm sau khi sắp xếp:\n" + products.map(p => `${p.id}. ${p.name} - ${p.price} VND`).join("\n"));
+}
+function sortProducts(){
+    let choice =  prompt("Nhập 1 để tăng dần ,nhập 2 để giảm dần");
+    
+}
+// Tính tổng tiền thanh toán
+function calculateTotal() {
+    let total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    console.log(`Tổng tiền cần thanh toán: ${total} VND`);
+}
+
+// Chạy chương trình
+function main() {
+    let choice;
+    do {
+        choice = prompt("Chọn chức năng:\n1. Hiển thị sản phẩm theo danh mục\n2. Mua sản phẩm\n3. Sắp xếp sản phẩm theo giá\n4. Tính tổng tiền thanh toán\n5. Thoát");
+        switch (choice) {
+            case "1":
+                displayProductsByCategory();
+                break;
+            case "2":
+                buyProduct();
+                break;
+            case "3":
+                sortProducts();
+                break;
+            case "4":
+                calculateTotal();
+                break;
+            case "5":
+                console.log("Thoát chương trình.");
+                
+                break;
+            default:
+                console.log("Lựa chọn không hợp lệ!");
+                
+        }
+    } while (choice !== "5");
+}
+
+main();
+
+
+    </script>
+</body>
+</html>
