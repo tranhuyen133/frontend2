@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bai6</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .login-container {
+            border: 2px solid black;
+            padding: 20px;
+            background: white; 
+            border-radius: 8px;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid gray;
+            border-radius: 4px;
+        }
+        button {
+            width: 100%;
+            padding: 8px;
+            background: gray;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: black;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <label>Username:</label>
+        <input type="email" id="username" placeholder="Nhập email">
+        
+        <label>Password:</label>
+        <input type="password" id="password" placeholder="Nhập mật khẩu">
+        
+        <button onclick="login()">Login</button>
+    </div>
+
+    <script>
+        function login() {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            // Tài khoản cố định
+            const correctUsername = "huanrose@gmail.com";
+            const correctPassword = "123456";
+
+            if (username === correctUsername && password === correctPassword) {
+                console.log("Đăng nhập thành công!");
+                alert("Đăng nhập thành công!");
+            } else {
+                console.log("Sai tài khoản hoặc mật khẩu!");
+                alert("Sai tài khoản hoặc mật khẩu!");
+            }
+        }
+    </script>
+
+</body>
+</html>

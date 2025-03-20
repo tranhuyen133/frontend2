@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bai5</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        h2 {
+            font-size: 30px;
+            font-weight: bold;
+        }
+        table {
+            width: 60%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 2px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Danh sách nhân viên</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>NAME</th>
+                <th>AGE</th>
+                <th>ADDRESS</th>
+            </tr>
+        </thead>
+        <tbody id="employeeTable">
+            <!-- Dữ liệu sẽ được thêm bằng JavaScript -->
+        </tbody>
+    </table>
+
+    <script>
+        // Danh sách nhân viên
+        const employees = [
+            { 
+                id: 1, 
+                name: "John", 
+                age: 18, 
+                address: "New York" 
+            },
+            { 
+                id: 2, 
+                name: "Mike",
+                age: 22, 
+                address: "Canada" 
+            },
+            { 
+                id: 3, 
+                name: "Linda",
+                age: 19, 
+                address: "California" 
+            },
+            { 
+                id: 4, 
+                name: "Peter", 
+                age: 25,
+                address: "London" 
+            },
+            { id: 5, name: "Tony", age: 17, address: "New York" }
+        ];
+
+        // Lấy thẻ tbody để chèn dữ liệu vào
+        const tableBody = document.getElementById("employeeTable");
+
+        // Duyệt qua danh sách và thêm từng dòng vào bảng
+        employees.forEach((employee, index) => {
+            const row = `<tr>
+                            <td>${index + 1}</td>
+                            <td>${employee.name}</td>
+                            <td>${employee.age}</td>
+                            <td>${employee.address}</td>
+                        </tr>`;
+            tableBody.innerHTML += row;
+        });
+    </script>
+
+</body>
+</html>
