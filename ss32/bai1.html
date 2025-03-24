@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đổi màu nền</title>
+    <style>
+      body {
+        text-align: center;
+        padding: 50px;
+      }
+      #box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 800px;
+        height: 300px;
+        border: 1px solid black;
+      }
+      button {
+        font-size: 20px;
+        padding: 10px 20px;
+        border: 2px solid gray;
+        cursor: pointer;
+        background-color: lightgray;
+      }
+    </style>
+  </head>
+  <body>
+    <p id="box">
+      <button onclick="changeBackgroundColor()">Đổi màu nền</button>
+    </p>
+
+    <script>
+      function getRandomColor() {
+        let colors = [
+          "red",
+          "blue",
+          "green",
+          "yellow",
+          "orange",
+          "purple",
+          "pink",
+          "cyan",
+          "brown",
+          "gray",
+        ];
+        let randomIndex = Math.floor(Math.random() * colors.length);
+        return colors[randomIndex];
+      }
+      function changeBackgroundColor() {
+        document.getElementById("box").style.backgroundColor = getRandomColor();
+      }
+    </script>
+  </body>
+</html>

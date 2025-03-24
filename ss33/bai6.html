@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ứng dụng Thời tiết</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background-color: #f0f8ff;
+        margin: 0;
+        padding: 20px;
+      }
+      .weather-container {
+        max-width: 400px;
+        margin: 20px auto;
+        padding: 20px;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      }
+      input,
+      button {
+        padding: 10px;
+        margin: 5px;
+        font-size: 16px;
+      }
+      button {
+        cursor: pointer;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+      }
+      button:hover {
+        background-color: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Ứng dụng Thời tiết</h2>
+    <input type="text" id="cityInput" placeholder="Nhập tên thành phố" />
+    <button onclick="searchWeather()">Tìm kiếm</button>
+    <div id="weatherResult" class="weather-container"></div>
+
+    <script>
+      const weatherData = {
+        "Hà Nội": {
+          temperature: 25,
+          humidity: 70,
+          windSpeed: 5,
+          description: "Có mây",
+          icon: "☁️",
+        },
+        "Hồ Chí Minh": {
+          temperature: 32,
+          humidity: 75,
+          windSpeed: 7,
+          description: "Nắng",
+          icon: "☀️",
+        },
+        "Đà Nẵng": {
+          temperature: 28,
+          humidity: 82,
+          windSpeed: 12,
+          description: "Mưa rào",
+          icon: "🌧️",
+        },
+      };
+
+      function searchWeather() {
+        const cityInput = document.getElementById("cityInput").value.trim();
+        const cityName = capitalizeWords(cityInput); // Chuẩn hóa tên thành phố
+
+        const weatherResult = document.getElementById("weatherResult");
+
+        if (weatherData[cityName]) {
+          const weather = weatherData[cityName];
+          weatherResult.innerHTML = `
+                    <h3>${cityName}</h3>
+                    <p style="font-size: 50px;">${weather.icon}</p>
+                    <p style="font-size: 24px;"><strong>${weather.temperature}°C</strong></p>
+                    <p>${weather.description}</p>
+                    <p>Độ ẩm: ${weather.humidity}%</p>
+                    <p>Tốc độ gió: ${weather.windSpeed} km/h</p>
+                `;
+        } else {
+          weatherResult.innerHTML = `<p style="color: red;">Không tìm thấy thành phố!</p>`;
+        }
+      }
+
+      function capitalizeWords(str) {
+        return str.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ');
+      }
+    </script>
+  </body>
+</html>

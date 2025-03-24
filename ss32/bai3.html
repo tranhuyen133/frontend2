@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách môn học</title>
+</head>
+<body>
+    <input type="text" id="subjectInput" placeholder="Nhập tên môn học">
+    <button onclick="addSubject()">Thêm môn học</button>
+    <ol id="subjectList">
+        <li>Toán</li>
+        <li>Lý</li>
+        <li>Hóa</li>
+    </ol>
+
+    <script>
+        function addSubject() {
+            let input = document.getElementById("subjectInput");
+            let subjectName = input.value;
+
+            if (subjectName === "") {
+                alert("Tên môn học không được để trống!");
+                return;
+            }
+
+            document.getElementById("subjectList").innerHTML += "<li>" + subjectName + "</li>"; 
+            input.value = ""; 
+        }
+    </script>
+</body>
+</html>

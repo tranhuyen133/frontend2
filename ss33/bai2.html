@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>bai2</title>
+    <style>
+      textarea {
+        width: 300px;
+        height: 80px;
+        font-size: 16px;
+        padding: 5px;
+      }
+      .counter {
+        font-size: 20px;
+        margin-top: 10px;
+      }
+      button {
+        margin-top: 10px;
+        padding: 5px 10px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <textarea id="textInput" placeholder=""></textarea>
+    <p class="counter" id="charCount">0 ký tự</p>
+    <button onclick="countCharacters()">kiểm tra</button>
+
+    <script>
+      function countCharacters(){
+        let text = document.getElementById("textInput").value;
+        let charCount = text.length;
+        document.getElementById('charCount').innerText = charCount + 'kí tự'
+      }
+    </script>
+  </body>
+</html>

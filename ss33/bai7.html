@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cửa hàng Đơn giản</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+      }
+      .container {
+        display: flex; 
+        flex-direction: row; 
+        flex-wrap: wrap; 
+        justify-content: center; 
+        gap: 20px; 
+        align-items: center;
+        margin-left: 60px;  
+        margin-right: 60px;
+      }
+      .product,
+      .cart {
+        border: 1px solid #ddd;
+        padding: 15px;
+        margin: 10px;
+        border-radius: 10px;
+        background: #f9f9f9;
+        
+      }
+      .product img {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+      }
+      .btn {
+        background: green;
+        color: white;
+        padding: 10px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+      .cart {
+        width: 300px;
+      }
+      .cart-items {
+        text-align: left;
+      }
+      .checkout {
+        background: blue;
+      }
+      .quantity-btn {
+        background: red;
+        color: white;
+        border: none;
+        padding: 5px;
+        margin: 0 5px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Cửa hàng Đơn giản</h1>
+    <div class="container" id="products"></div>
+    <div class="cart">
+      <h2>Giỏ hàng</h2>
+      <div class="cart-items" id="cart-items">Giỏ hàng trống</div>
+      <h3>Tổng: <span id="total">0</span>đ</h3>
+      <button class="btn checkout" onclick="checkout()">Thanh toán</button>
+    </div>
+    <script>
+      const products = [
+        {
+          id: 1,
+          name: "Điện thoại Samsung Galaxy A54",
+          price: 7490000,
+          image:
+            "https://cdn.tgdd.vn/Products/Images/42/335177/samsung-galaxy-a56-5g-green-thumb-600x600.jpg",
+        },
+        {
+          id: 2,
+          name: "Laptop Dell Inspiron 15",
+          price: 15990000,
+          image:
+            "https://bizweb.dktcdn.net/100/446/400/products/laptop-dell-vostro-3490-1-gia-loc.jpg?v=1699258008053",
+        },
+        {
+          id: 3,
+          name: "Tai nghe AirPods Pro",
+          price: 4990000,
+          image:
+            "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/airpods-pro-2-hero-select-202409_FMT_WHH?wid=750&hei=556&fmt=jpeg&qlt=90&.v=1724041668836",
+        },
+        {
+          id: 4,
+          name: "Đồng hồ thông minh Apple Watch",
+          price: 8990000,
+          image:
+            "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/MXM23ref_FV99_VW_34FR+watch-case-46-aluminum-jetblack-nc-s10_VW_34FR+watch-face-46-aluminum-jetblack-s10_VW_34FR?wid=752&hei=720&bgc=fafafa&trim=1&fmt=p-jpg&qlt=80&.v=TnVrdDZWRlZzTURKbHFqOGh0dGpVRW5TeWJ6QW43NUFnQ2V4cmRFc1VnYUdWejZ5THhpKzJwRmRDYlhxN2o5aXB2QjR6TEZ4ZThxM3VqYkZobmlXM3RGNnlaeXQ4NGFKQTAzc0NGeHR2aVk0VEhOZEFKYmY1ZHNpalQ3YVhOWk9WVlBjZVFuazArV21YaFcvTVJ5dzR2eDMxaWg4TFhITTVrUW41Z084dENpYmZuSTdFUnErS0g3SWYxazQrNDdyRzE3K0tORmZaUy9vOVdqTEp2dmJNL3gwYlE3R0w4Z1RCbG9qQTd1MjYyL1owaE5aVCt2Ri82aDRacTg0bXlaZA",
+        },
+        {
+          id: 5,
+          name: "Máy ảnh Canon EOS M50",
+          price: 12490000,
+          image:
+            "https://cdn.vjshop.vn/may-anh/mirrorless/canon/canon-eos-r50/black-18-45/canon-eos-r50-lens-18-45mm-500x500.jpg",
+        },
+        {
+          id: 6,
+          name: "Loa Bluetooth JBL Flip 5",
+          price: 2190000,
+          image:
+            "https://bizweb.dktcdn.net/100/445/498/products/jbl-go-4-3-4-left-black-48178-x1.jpg?v=1732646465910",
+        },
+        {
+          id: 7,
+          name: "Bàn phím cơ Logitech G Pro",
+          price: 2490000,
+          image:
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1MvD76Mt-Ne0IC2DPMMsTZpG05xDxJOzkqw&s",
+        },
+        {
+          id: 8,
+          name: "Chuột không dây Logitech MX Master",
+          price: 1890000,
+          image:
+            "https://product.hstatic.net/200000722513/product/h_mx_master_3_wireless__graphite_.jpg_1e5491e35f754dcc90b90582a9c3be95_ca0c63ca59de4ed1b4d46fcc5c81c1ed.png",
+        },
+      ];
+
+      const cart = {};
+
+      function displayProducts() {
+        const productContainer = document.getElementById("products");
+        products.forEach((product) => {
+          const productElement = document.createElement("div");
+          productElement.classList.add("product");
+          productElement.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <p>${product.price.toLocaleString()}đ</p>
+                    <button class="btn" onclick="addToCart(${
+                      product.id
+                    })">Thêm vào giỏ hàng</button>
+                `;
+          productContainer.appendChild(productElement);
+        });
+      }
+
+      function addToCart(id) {
+        if (cart[id]) {
+          cart[id].quantity++;
+        } else {
+          const product = products.find((p) => p.id === id);
+          cart[id] = { ...product, quantity: 1 };
+        }
+        updateCart();
+      }
+
+      function updateCart() {
+        const cartContainer = document.getElementById("cart-items");
+        cartContainer.innerHTML = "";
+        let total = 0;
+        Object.values(cart).forEach((item) => {
+          total += item.price * item.quantity;
+          const cartItem = document.createElement("div");
+          cartItem.innerHTML = `
+                    ${item.name} - ${item.price.toLocaleString()}đ x  ${
+            item.quantity
+          }
+                    <button class="quantity-btn" onclick="changeQuantity(${
+                      item.id
+                    }, -1)">-</button>
+                    ${item.quantity}
+                    <button class="quantity-btn" onclick="changeQuantity(${
+                      item.id
+                    }, 1)">+</button>
+                `;
+          cartContainer.appendChild(cartItem);
+        });
+        document.getElementById("total").innerText = total.toLocaleString();
+      }
+
+      function changeQuantity(id, change) {
+        if (cart[id]) {
+          cart[id].quantity += change;
+          if (cart[id].quantity <= 0) {
+            delete cart[id];
+          }
+        }
+        updateCart();
+      }
+
+      function checkout() {
+        if (Object.keys(cart).length === 0) {
+          alert("Giỏ hàng trống!");
+          return;
+        }
+        alert(
+          "Thanh toán thành công! Tổng tiền: " +
+            document.getElementById("total").innerText +
+            "đ"
+        );
+        Object.keys(cart).forEach((id) => delete cart[id]);
+        updateCart();
+      }
+
+      displayProducts();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đếm số lần bấm</title>
+    <style>
+        body {
+            text-align: center;
+            font-size: 24px;
+        }
+        button {
+            font-size: 20px;
+            padding: 10px 20px;
+            border: 2px solid gray;
+            cursor: pointer;
+            background-color: lightgray;
+        }
+    </style>
+</head>
+<body>
+    <button id="clickButton">Bấm vào tôi</button>
+    <p>Số lần bấm: <span id="count">0</span></p>
+    
+    <script>
+        let count = 0; 
+        document.getElementById("clickButton").onclick = function() {
+            count++;
+            document.getElementById("count").textContent = count; // Cập nhật số lần bấm
+        };
+    </script>
+</body>
+</html>

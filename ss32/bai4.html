@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kiểm tra Email</title>
+    <style>
+      body {
+        font-size: 20px;
+      }
+      input {
+        padding: 5px;
+        font-size: 16px;
+        width: 250px;
+      }
+      button {
+        padding: 6px 10px;
+        font-size: 16px;
+        cursor: pointer;
+        margin-top: 10px;
+      }
+      #result {
+        font-weight: bold;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <input type="text" id="emailInput" placeholder="Nhập email của bạn" />
+    <p id="result"></p>
+    <button id="checkEmailBtn">Check</button>
+
+    <script>
+      document.getElementById("checkEmailBtn").onclick = function () {
+        let email = document.getElementById("emailInput").value.trim();
+        let result = document.getElementById("result");
+
+        // Kiểm tra có dấu @ không
+        let coA = email.indexOf("@") !== -1;
+
+        // Kiểm tra có kết thúc bằng .com hoặc .vn không
+        let dungCom = email.endsWith(".com");
+        let dungVn = email.endsWith(".vn");
+
+        if (coA && (dungCom || dungVn)) {
+          result.textContent = "Email hợp lệ!";
+          result.style.color = "green";
+        } else {
+          result.textContent = "Email không hợp lệ!";
+          result.style.color = "red";
+        }
+      };
+    </script>
+  </body>
+</html>

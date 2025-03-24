@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bai5</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #f0f0f0;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            width: 600px;
+            text-align: center;
+        }
+        h2 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+        input {
+            padding: 8px;
+            font-size: 16px;
+            width: 70%;
+            border: 1px solid #eeecec;
+            border-radius: 5px;
+        }
+        button {
+            padding: 8px 12px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #28a745;
+            color: white;
+            margin-left: 5px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 15px;
+        }
+        li {
+            background: #f8f9fa;
+            margin: 5px 0;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 5px;
+            box-shadow: 0px 2px 5px rgba(255, 255, 255, 0.1);
+        }
+        .deleteBtn {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .deleteBtn:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Danh sách công việc</h2>
+        <input type="text" id="taskInput" placeholder="Nhập công việc">
+        <button id="addTaskBtn">Thêm</button>
+
+        <ul id="taskList">
+            
+        </ul>
+    </div>
+
+    <script>
+
+        document.getElementById("addTaskBtn").onclick = function() {
+            let input = document.getElementById("taskInput");
+            let taskName = input.value.trim();
+            
+            if (taskName === "") {
+                alert("Vui lòng nhập công việc!");
+                return;
+            }
+
+            let list = document.getElementById("taskList");
+            let newTask = document.createElement("li");
+
+            // Nội dung công việc
+            newTask.textContent = taskName;
+
+            // Nút xóa
+            let deleteBtn = document.createElement("button");
+            deleteBtn.textContent = "X";
+            deleteBtn.classList.add("deleteBtn");
+            
+            // Sự kiện xóa
+            deleteBtn.onclick = function() {
+                let confirmDelete = confirm("Bạn có chắc chắn muốn xóa công việc này?");
+                if (confirmDelete) {
+                    list.removeChild(newTask);
+                }
+            };
+
+            // Thêm nút xóa vào nhiệm vụ
+            newTask.appendChild(deleteBtn);
+            
+            // Thêm công việc vào danh sách
+            list.appendChild(newTask);
+
+            // Xóa ô nhập
+            input.value = "";
+            input.focus();
+        };
+    </script>
+</body>
+</html>

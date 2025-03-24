@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bai3</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        select, button {
+            padding: 8px;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+        ul {
+            list-style-type: disc;
+        }
+        li {
+            margin: 5px 0;
+        }
+        strong {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Chọn danh mục sản phẩm:</h2>
+    <select id="category">
+        <option value="all">-- Lựa chọn danh mục --</option>
+        <option value="Đồ ăn">Đồ ăn</option>
+        <option value="Nước">Nước</option>
+        <option value="Dụng cụ">Dụng cụ</option>
+    </select>
+    <button onclick="filterProducts()">Lọc</button>
+
+    <h2>Danh sách sản phẩm:</h2>
+    <ul id="productList"></ul>
+
+    <script>
+        let dish = [
+            { name: 'Rau sạch', category: 'Đồ ăn' },
+            { name: 'Thịt lợn', category: 'Đồ ăn' },
+            { name: 'Pepsi không calo', category: 'Nước' },
+            { name: 'Cocacola', category: 'Nước' },
+            { name: 'Cờ lê', category: 'Dụng cụ' },
+            { name: 'Tuy vít', category: 'Dụng cụ' }
+        ];
+        
+        function displayProducts(products) {
+            let productList = document.getElementById("productList");
+            productList.innerHTML = ""; 
+            
+            products.forEach(product => {
+                let li = document.createElement("li");
+                li.innerHTML = `<strong>Tên đồ ăn:</strong> ${product.name} - <strong>Danh mục:</strong> ${product.category}`;
+                productList.appendChild(li);
+            });
+        }
+        
+        function filterProducts() {
+            let selectedCategory = document.getElementById("category").value;
+            
+            let filteredProducts = dish.filter(product => 
+                selectedCategory === "all" || product.category === selectedCategory
+            );
+
+            displayProducts(filteredProducts);
+        }
+
+        displayProducts(dish);
+    </script>
+
+</body>
+</html>
