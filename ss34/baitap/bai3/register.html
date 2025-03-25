@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+    <h2>Welcome, <span id="userEmail"></span>!</h2>
+    <button onclick="logout()">Logout</button>
+
+    <script>
+        // Kiểm tra nếu chưa đăng nhập
+        const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+        if (!loggedInUser) {
+            window.location.href = "home.html";
+        } else {
+            document.getElementById("userEmail").textContent = loggedInUser.email;
+        }
+
+        // Đăng xuất
+        function logout() {
+            localStorage.removeItem("loggedInUser");
+            window.location.href = "index.html";
+        }
+    </script>
+</body>
+</html>

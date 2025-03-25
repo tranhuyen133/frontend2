@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Công Việc</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Quản lý Công Việc</h2>
+        <form id="taskForm">
+            <input type="text" id="content" placeholder="Nhập nội dung công việc" required>
+            <input type="date" id="dueDate" required>
+            <select id="status" >
+                <option value="Pending">Chờ xử lý</option>
+                <option value="Completed">Hoàn thành</option>
+            </select>
+            <input type="text" id="assignedTo" placeholder="Người phụ trách" required>
+            <button type="submit" id="submitBtn">Thêm</button>
+        </form>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nội dung</th>
+                    <th>Ngày hết hạn</th>
+                    <th>Trạng thái</th>
+                    <th>Phụ trách</th>
+                    <th>Hành động</th>
+                </tr>
+            </thead>
+            <tbody id="taskTable">
+                
+            </tbody>
+        </table>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

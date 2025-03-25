@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách nhân viên</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+            text-align: center;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h2>Danh sách nhân viên Rikkei</h2>
+    <input type="text" id="name" placeholder="tên nhân viên">
+    <input type="text" id="position" placeholder="chức vụ">
+    <button onclick="addEmployee()">Thêm nhân viên</button>
+    <table>
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>Tên</th>
+                <th>Chức vụ</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody id="employeeTable"></tbody>
+    </table>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", loadEmployees);
+
+        function loadEmployees() {
+            let employees = JSON.parse(localStorage.getItem("employees")) || [];
+            let table = document.getElementById("employeeTable");
+            table.innerHTML = "";
+            employees.forEach((employee, index) => {
+                let row = `<tr>
+                    <td>${index + 1}</td>
+                    <td>${employee.name}</td>
+                    <td>${employee.position}</td>
+                    <td><button onclick="deleteEmployee(${index})">Xóa</button></td>
+                </tr>`;
+                table.innerHTML += row;
+            });
+        }
+
+        function addEmployee() {
+            let name = document.getElementById("name").value;
+            let position = document.getElementById("position").value;
+            if (name.trim() === "" || position.trim() === "") {
+                alert("Vui lòng nhập đầy đủ thông tin!");
+                return;
+            }
+            let employees = JSON.parse(localStorage.getItem("employees")) || [];
+            employees.push({ name, position });
+            localStorage.setItem("employees", JSON.stringify(employees));
+            loadEmployees();
+            document.getElementById("name").value = "";
+            document.getElementById("position").value = "";
+        }
+
+        function deleteEmployee(index) {
+            let employees = JSON.parse(localStorage.getItem("employees")) || [];
+            employees.splice(index, 1);
+            localStorage.setItem("employees", JSON.stringify(employees));
+            loadEmployees();
+        }
+    </script>
+</body>
+</html>

@@ -8,6 +8,10 @@
       body {
         font-family: Arial, sans-serif;
         text-align: center;
+        
+      }
+      .productContainer{
+        display: flex;
       }
       .container {
         display: flex; 
@@ -42,7 +46,8 @@
         border-radius: 5px;
       }
       .cart {
-        width: 300px;
+        width: 1000px;
+        height: 200px;
       }
       .cart-items {
         text-align: left;
@@ -62,6 +67,8 @@
   </head>
   <body>
     <h1>Cửa hàng Đơn giản</h1>
+    <div class="productContainer">
+      
     <div class="container" id="products"></div>
     <div class="cart">
       <h2>Giỏ hàng</h2>
@@ -69,6 +76,8 @@
       <h3>Tổng: <span id="total">0</span>đ</h3>
       <button class="btn checkout" onclick="checkout()">Thanh toán</button>
     </div>
+    </div>
+    
     <script>
       const products = [
         {
@@ -166,7 +175,7 @@
           total += item.price * item.quantity;
           const cartItem = document.createElement("div");
           cartItem.innerHTML = `
-                    ${item.name} - ${item.price.toLocaleString()}đ x  ${
+                    ${item.name} : ${item.price.toLocaleString()}đ x  ${
             item.quantity
           }
                     <button class="quantity-btn" onclick="changeQuantity(${
