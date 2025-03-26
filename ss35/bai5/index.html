@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh mục sản phẩm</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        .container {
+            max-width: 500px;
+            margin: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+        .error {
+            color: red;
+            font-size: 14px;
+        }
+        .hidden {
+            display: none;
+        }
+        .form-container {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Quản lý danh mục</h2>
+    <div class="container">
+        <button onclick="showForm()">Thêm mới danh mục</button>
+
+        <div id="form-container" class="hidden">
+            <input type="text" id="category-name" placeholder="Nhập tên danh mục">
+            <button onclick="addCategory()">Lưu danh mục</button>
+            <p id="error-message" class="error hidden">Vui lòng nhập tên danh mục!</p>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>STT</th>
+                    <th>Tên danh mục</th>
+                    <th>Hành động</th>
+                </tr>
+            </thead>
+            <tbody id="category-list"></tbody>
+        </table>
+    </div>
+
+    <script>
+        let categories = JSON.parse(localStorage.getItem("categories")) || [];
+
+        function showForm() {
+            document.getElementById("form-container").classList.toggle("hidden");
+        }
+
+        function addCategory() {
+            let categoryName = document.getElementById("category-name").value.trim();
+            let errorMessage = document.getElementById("error-message");
+
+            if (!categoryName) {
+                errorMessage.classList.remove("hidden");
+                return;
+            }
+
+            errorMessage.classList.add("hidden");
+            categories.push(categoryName);
+            localStorage.setItem("categories", JSON.stringify(categories));
+
+            document.getElementById("category-name").value = "";
+            renderCategories();
+        }
+
+        function deleteCategory(index) {
+            categories.splice(index, 1);
+            localStorage.setItem("categories", JSON.stringify(categories));
+            renderCategories();

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách nhân viên</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        table {
+            width: 50%;
+            margin: auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .pagination {
+            margin-top: 10px;
+        }
+        .pagination button {
+            padding: 5px 10px;
+            margin: 2px;
+            background-color: rgb(76, 141, 245);
+            border: none;
+        }
+        input {
+            padding: 5px;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Danh sách nhân viên Rikkei</h1>
+    <input type="text" id="name" placeholder="Tên nhân viên">
+    <input type="text" id="position" placeholder="Chức vụ">
+    <button onclick="addEmployee()">Thêm nhân viên</button>
+    <table>
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>Tên</th>
+                <th>Chức vụ</th>
+            </tr>
+        </thead>
+        <tbody id="employee-table"></tbody>
+    </table>
+    <div class="pagination">
+        <button onclick="prevPage()">Previous</button>
+        <span id="page-numbers"></span>
+        <button onclick="nextPage()">Next</button>
+    </div>
+    <script>
+        let employees = JSON.parse(localStorage.getItem("employees")) || [];
+        let currentPage = 1;
+        let itemsPerPage = 3;
+
+        function addEmployee() {
+            let name = document.getElementById("name").value;
+            let position = document.getElementById("position").value;
+            if (name && position) {
+                employees.push({ name, position });
+                localStorage.setItem("employees", JSON.stringify(employees));
+                document.getElementById("name").value = "";
+                document.getElementById("position").value = "";
+                displayEmployees();
+            }
+        }
+
+        function displayEmployees() {
+            let table = document.getElementById("employee-table");
+            table.innerHTML = "";
+            let start = (currentPage - 1) * itemsPerPage;
+            let end = start + itemsPerPage;
+            let paginatedEmployees = employees.slice(start, end);
+            paginatedEmployees.forEach((emp, index) => {
+                let row = `<tr>
+                    <td>${start + index + 1}</td>
+                    <td>${emp.name}</td>
+                    <td>${emp.position}</td>
+                </tr>`;
+                table.innerHTML += row;
+            });
+            updatePagination();
+        }
+
+        function updatePagination() {
+            let totalPages = Math.ceil(employees.length / itemsPerPage);
+            let pageNumbers = document.getElementById("page-numbers");
+            pageNumbers.innerHTML = "";
+            for (let i = 1; i <= totalPages; i++) {
+                let btn = document.createElement("button");
+                btn.innerText = i;
+                btn.onclick = function () { currentPage = i; displayEmployees(); };
+                if (i === currentPage) btn.style.background = "blue";
+                pageNumbers.appendChild(btn);
+            }
+        }
+
+        function prevPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                displayEmployees();
+            }
+        }
+
+        function nextPage() {
+            let totalPages = Math.ceil(employees.length / itemsPerPage);
+            if (currentPage < totalPages) {
+                currentPage++;
+                displayEmployees();
+            }
+        }
+
+        displayEmployees();
+    </script>
+</body>
+</html>

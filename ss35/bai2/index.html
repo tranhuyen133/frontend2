@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookmark Manager</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: #3e2451;
+            color: white;
+            margin: 50px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+        }
+        .btn {
+            background: #7b5ba6;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+        .bookmark {
+            display: flex;
+            justify-content: space-between;
+            background:#25054f;
+            color: rgb(255, 255, 255);
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            color: black;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .modal input {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button class="btn" onclick="openModal()">ADD BOOKMARK</button>
+        <div id="bookmark-list"></div>
+    </div>
+
+    <div class="modal" id="bookmark-modal">
+        <h3>Add Bookmark</h3>
+        <input type="text" id="site-name" placeholder="Website Name">
+        <input type="url" id="site-url" placeholder="Website URL">
+        <button class="btn" onclick="addBookmark()">Save</button>
+        <button class="btn" onclick="closeModal()">Close</button>
+    </div>
+
+    <script>
+        function openModal() {
+            document.getElementById("bookmark-modal").style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById("bookmark-modal").style.display = "none";
+        }
+
+        function loadBookmarks() {
+            let bookmarks = JSON.parse(localStorage.getItem("bookmarks")) || [];
+            let list = document.getElementById("bookmark-list");
+            list.innerHTML = "";
+            bookmarks.forEach((bookmark, index) => {
+                let div = document.createElement("div");
+                div.classList.add("bookmark");
+                div.innerHTML = `
+                    <a href="${bookmark.url}" target="_blank">${bookmark.name}</a>
+                    <button onclick="deleteBookmark(${index})">X</button>
+                `;
+                list.appendChild(div);
+            });
+        }
+        
+
+        function addBookmark() {
+            let name = document.getElementById("site-name").value;
+            let url = document.getElementById("site-url").value;
+            if (name.trim() && url.trim()) {
+                let bookmarks = JSON.parse(localStorage.getItem("bookmarks")) || [];
+                bookmarks.push({ name, url });
+                localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+                closeModal();
+                loadBookmarks();
+            }
+        }
+        function deleteBookmark(index) {
+            let bookmarks = JSON.parse(localStorage.getItem("bookmarks"));
+            bookmarks.splice(index, 1);
+            localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+            loadBookmarks();
+        }
+
+        loadBookmarks();
+    </script>
+</body>
+</html>
