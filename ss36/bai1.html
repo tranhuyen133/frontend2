@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ghi nhớ tên người dùng</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f9fc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+        }
+        .hidden {
+            display: none;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Form nhập tên -->
+    <div class="container" id="nameForm">
+        <h2>Nhập tên của bạn</h2>
+        <input type="text" id="name" placeholder="Nhập tên của bạn">
+        <button onclick="saveName()">Lưu</button>
+    </div>
+
+    <!-- Phần chào người dùng -->
+    <div class="container hidden" id="greetingContainer">
+        <p class="text"> 👋 Chào bạn, <span id="displayName"></span>!</p>
+        <button onclick="changeName()">Đổi tên</button>
+    </div>
+
+    <script>
+        function saveName() {
+            let name = document.getElementById("name").value.trim(); // Lấy tên, loại bỏ khoảng trắng
+            if (name !== "") {
+                localStorage.setItem("name", name); // Lưu vào localStorage
+                showText(); // Gọi hàm hiển thị lời chào
+            }
+        }
+
+        function showText() {
+            let name = localStorage.getItem("name");
+            if (name) {
+                document.getElementById("displayName").textContent = name;
+                document.getElementById("nameForm").classList.add("hidden"); // Ẩn form nhập
+                document.getElementById("greetingContainer").classList.remove("hidden"); // Hiện lời chào
+            }
+        }
+
+        function changeName() {
+            document.getElementById("nameForm").classList.remove("hidden"); // Hiện form nhập
+            document.getElementById("greetingContainer").classList.add("hidden"); // Ẩn lời chào
+        }
+
+        // Kiểm tra nếu có tên trong localStorage thì hiển thị ngay
+        window.onload = showText;
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bình chọn món ăn yêu thích</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f9fc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+        .food-container {
+            width: 350px;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+        .food-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+        .food-info {
+            flex: 1;
+        }
+        .like-btn {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+        .like-btn:hover {
+            background-color: #218838;
+        }
+        .like-count {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>📊 Bạn thích món nào nhất? 🍜</h2>
+
+    <div id="foodList"></div>
+
+    <script>
+        // Danh sách món ăn
+        const foods = [
+            { id: "bunbo", name: "Bún bò Huế", image: "https://tse3.mm.bing.net/th?id=OIP.pdctUBFW-3CHNnJB-nMI5QHaG_&pid=Api&P=0&h=220" },
+            { id: "phobo", name: "Phở bò Hà Nội", image: "https://tse3.mm.bing.net/th?id=OIP.N_E7iVJlU0XVOEBPbVWS9gHaE7&pid=Api&P=0&h=220" },
+            { id: "comtam", name: "Cơm tấm Sài Gòn", image: "https://tse4.mm.bing.net/th?id=OIP.5jVnpIEouSOd84GNufOMDwHaEK&pid=Api&P=0&h=220" }
+        ];
+
+        // Hàm tạo danh sách món ăn
+        function renderFoods() {
+            const foodList = document.getElementById("foodList");
+            foodList.innerHTML = "";
+
+            foods.forEach(food => {
+                let likes = localStorage.getItem(food.id) || 0;
+                foodList.innerHTML += `
+                    <div class="food-container">
+                        <img src="${food.image}" alt="${food.name}" class="food-image">
+                        <div class="food-info">
+                            <h3>${food.name}</h3>
+                            <p class="like-count">❤️ <span id="${food.id}-count">${likes}</span> lượt thích</p>
+                            <button class="like-btn" onclick="increaseLike('${food.id}')">Thích +1</button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        // Hàm tăng lượt thích
+        function increaseLike(foodId) {
+            let likes = localStorage.getItem(foodId) || 0;
+            likes = parseInt(likes) + 1;
+            localStorage.setItem(foodId, likes);
+            document.getElementById(`${foodId}-count`).textContent = likes;
+        }
+
+        // Gọi hàm hiển thị khi trang tải lại
+        renderFoods();
+    </script>
+
+</body>
+</html>

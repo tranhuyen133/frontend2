@@ -3,16 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lọc danh mục theo trạng thái</title>
+    <title>Quản lý danh mục</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
-            text-align: center;
             margin: 20px;
+            text-align: center;
         }
         .container {
-            max-width: 600px;
+            max-width: 800px;
             margin: auto;
+            text-align: left;
         }
         table {
             width: 100%;
@@ -20,15 +22,43 @@
             margin-top: 10px;
         }
         table, th, td {
-            border: 1px solid black;
+            border: 1px solid #ddd;
         }
         th, td {
-            padding: 10px;
-            text-align: center;
+            padding: 12px;
+            text-align: left;
         }
-        .error {
+        th {
+            background-color: #f4f4f4;
+        }
+        .status-active {
+            color: green;
+            font-weight: bold;
+        }
+        .status-inactive {
             color: red;
+            font-weight: bold;
+        }
+        .btn {
+            padding: 8px 12px;
+            border: none;
+            cursor: pointer;
             font-size: 14px;
+        }
+        .btn-add {
+            background-color: blue;
+            color: white;
+            border-radius: 5px;
+        }
+        .btn-delete {
+            color: red;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .btn-edit {
+            color: orange;
+            cursor: pointer;
+            font-size: 16px;
         }
         .hidden {
             display: none;
@@ -36,40 +66,53 @@
         .form-container {
             margin-top: 10px;
         }
+        .filter-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .search-input {
+            padding: 6px;
+            width: 50%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
 
-    <h2>Quản lý danh mục</h2>
+    <h2>Danh mục</h2>
     <div class="container">
-        <button onclick="showForm()">Thêm mới danh mục</button>
+        <button class="btn btn-add" onclick="showForm()">Thêm mới danh mục</button>
 
         <div id="form-container" class="hidden">
             <input type="text" id="category-name" placeholder="Nhập tên danh mục">
             <select id="category-status">
-                <option value="active">Hoạt động</option>
-                <option value="inactive">Không hoạt động</option>
+                <option value="active">Đang hoạt động</option>
+                <option value="inactive">Ngừng hoạt động</option>
             </select>
-            <button onclick="addCategory()">Lưu danh mục</button>
-            <p id="error-message" class="error hidden">Vui lòng nhập tên danh mục!</p>
+            <button class="btn btn-add" onclick="addCategory()">Lưu</button>
+            <p id="error-message" class="hidden" style="color: red;">Vui lòng nhập tên danh mục!</p>
         </div>
 
         <br>
 
-        <label for="filter-status">Lọc theo trạng thái:</label>
-        <select id="filter-status" onchange="renderCategories()">
-            <option value="all">Tất cả</option>
-            <option value="active">Hoạt động</option>
-            <option value="inactive">Không hoạt động</option>
-        </select>
+        <div class="filter-container">
+            <select id="filter-status" onchange="renderCategories()">
+                <option value="all">Tất cả</option>
+                <option value="active">Đang hoạt động</option>
+                <option value="inactive">Ngừng hoạt động</option>
+            </select>
+            <input type="text" id="search" class="search-input" onkeyup="renderCategories()" placeholder="Tìm kiếm danh mục theo tên...">
+        </div>
 
         <table>
             <thead>
                 <tr>
-                    <th>STT</th>
+                    <th>Mã danh mục</th>
                     <th>Tên danh mục</th>
                     <th>Trạng thái</th>
-                    <th>Hành động</th>
+                    <th>Chức năng</th>
                 </tr>
             </thead>
             <tbody id="category-list"></tbody>
@@ -78,6 +121,10 @@
 
     <script>
         let categories = JSON.parse(localStorage.getItem("categories")) || [];
+
+        function generateCategoryID() {
+            return "DM" + String(categories.length + 1).padStart(3, '0');
+        }
 
         function showForm() {
             document.getElementById("form-container").classList.toggle("hidden");
@@ -95,7 +142,7 @@
 
             errorMessage.classList.add("hidden");
 
-            let newCategory = { name: categoryName, status: categoryStatus };
+            let newCategory = { id: generateCategoryID(), name: categoryName, status: categoryStatus };
             categories.push(newCategory);
             localStorage.setItem("categories", JSON.stringify(categories));
 
@@ -114,17 +161,24 @@
             tbody.innerHTML = "";
 
             let filterStatus = document.getElementById("filter-status").value;
+            let searchKeyword = document.getElementById("search").value.toLowerCase();
 
             let filteredCategories = categories.filter(category => 
-                filterStatus === "all" || category.status === filterStatus
+                (filterStatus === "all" || category.status === filterStatus) &&
+                category.name.toLowerCase().includes(searchKeyword)
             );
 
             filteredCategories.forEach((category, index) => {
                 let row = `<tr>
-                    <td>${index + 1}</td>
+                    <td>${category.id}</td>
                     <td>${category.name}</td>
-                    <td>${category.status === "active" ? "Hoạt động" : "Không hoạt động"}</td>
-                    <td><button onclick="deleteCategory(${index})">Xóa</button></td>
+                    <td class="${category.status === 'active' ? 'status-active' : 'status-inactive'}">
+                        ${category.status === "active" ? "Đang hoạt động" : "Ngừng hoạt động"}
+                    </td>
+                    <td>
+                        <span class="btn-delete" onclick="deleteCategory(${index})">🗑️</span>
+                        <span class="btn-edit">✏️</span>
+                    </td>
                 </tr>`;
                 tbody.innerHTML += row;
             });

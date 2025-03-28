@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chọn màu nền yêu thích</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            transition: background-color 0.3s ease-in-out;
+        }
+        h2 {
+            font-size: 24px;
+        }
+        .color-btn {
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            color: white;
+            border-radius: 5px;
+        }
+        .red { background-color: red; }
+        .blue { background-color: blue; }
+        .yellow { background-color: gold; }
+        .purple { background-color: purple; }
+        .message {
+            margin-top: 15px;
+            font-size: 14px;
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Chọn màu nền bạn yêu thích</h2>
+    <button class="color-btn red" onclick="changeBackground('red')">Đỏ</button>
+    <button class="color-btn blue" onclick="changeBackground('blue')">Xanh</button>
+    <button class="color-btn yellow" onclick="changeBackground('gold')">Vàng</button>
+    <button class="color-btn purple" onclick="changeBackground('purple')">Tím</button>
+
+    <p class="message">Trang sẽ ghi nhớ màu bạn đã chọn kể cả khi tải lại!</p>
+
+    <script>
+        // Hàm đổi màu nền và lưu vào localStorage
+        function changeBackground(color) {
+            document.body.style.backgroundColor = color;
+            localStorage.setItem("backgroundColor", color);
+        }
+
+        // Lấy màu đã lưu và áp dụng khi tải lại trang
+        function loadBackground() {
+            let savedColor = localStorage.getItem("backgroundColor");
+            if (savedColor) {
+                document.body.style.backgroundColor = savedColor;
+            }
+        }
+
+        // Gọi hàm để áp dụng màu ngay khi tải trang
+        loadBackground();
+    </script>
+
+</body>
+</html>

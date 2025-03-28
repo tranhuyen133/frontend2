@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Đăng nhập</h2>
+        <input type="text" id="login-username" placeholder="Tên đăng nhập">
+        <input type="password" id="login-password" placeholder="Mật khẩu">
+        <div>
+            <input type="checkbox" id="remember-me"> Ghi nhớ tôi
+        </div>
+        <button onclick="login()">Đăng nhập</button>
+        <p>Chưa có tài khoản? <a href="./register.html">Đăng ký</a></p>
+    </div>
+
+    <script>
+        function login() {
+            let username = document.getElementById('login-username').value;
+            let password = document.getElementById('login-password').value;
+            let rememberMe = document.getElementById('remember-me').checked;
+            
+            let users = JSON.parse(localStorage.getItem('users')) || {};
+            if (users[username] && users[username] === password) {
+                if (rememberMe) {
+                    localStorage.setItem('loggedInUser', username);
+                } else {
+                    sessionStorage.setItem('loggedInUser', username);
+                }
+                alert("Đăng nhập thành công!");
+                window.location.href = "./home.html";
+
+
+                
+            } else {
+                alert("Sai tên đăng nhập hoặc mật khẩu!");
+            }
+        }
+
+        // Kiểm tra nếu đã đăng nhập trước đó
+        window.onload = function() {
+            let loggedInUser = localStorage.getItem('loggedInUser') || sessionStorage.getItem('loggedInUser');
+            if (loggedInUser) {
+                window.location.href = "./home.html";
+            }
+        };
+    </script>
+</body>
+</html>
